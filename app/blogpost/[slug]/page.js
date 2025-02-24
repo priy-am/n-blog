@@ -12,12 +12,13 @@ import { transformerCopyButton } from '@rehype-pretty/transformers'
 import OnThisPage from "@/components/onthispage";
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
+import path from "path";
 
 export default async function Page({ params }) {
 
 
-  const filePath = `content/${params.slug}.md`;
-if (!fs.existsSync(`./content/${params.slug}.md`)) { // Added ./ 
+  const filePath = path.join(process.cwd(), `content/${params.slug}.md`);
+if (!fs.existsSync(filePath)) { // Added ./ 
   notFound(); 
   return; 
 }
