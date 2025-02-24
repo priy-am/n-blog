@@ -17,11 +17,12 @@ export default async function Page({ params }) {
 
 
   const filePath = `content/${params.slug}.md`;
-  if (!fs.existsSync(filePath)) {
-    notFound();
-    return;
-  }
-  const fileContent = fs.readFileSync(filePath, "utf-8");
+if (!fs.existsSync(`./content/${params.slug}.md`)) { // Added ./ 
+  notFound(); 
+  return; 
+}
+const fileContent = fs.readFileSync(filePath, "utf-8");
+
   const { content, data } = matter(fileContent);
   // console.log(data, content)
   const processor = unified()
